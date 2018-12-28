@@ -12,7 +12,7 @@ const Player = props => {
 };
 
 Player.propTypes = {
-  player: PropTypes.array.isRequired,
+  player: PropTypes.object.isRequired,
 };
 
 

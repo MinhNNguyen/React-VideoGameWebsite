@@ -8,7 +8,7 @@ class AddPlayer extends Component {
       lastName: '',
       username: '',
       gamesPlayed: 0
-    },
+    }
   };
 
   handleChange = event => {
@@ -19,9 +19,26 @@ class AddPlayer extends Component {
     }));
   };
 
+  checkPlayerExisted = username => {
+  	for (let player of this.props.playerArray) {
+      if ( player.username === username )
+        return true;
+    }
+    return false;
+  };
+
   addPlayer = event => {
     event.preventDefault();
-    this.props.addPlayerOn(this.state.player);
+    
+    if (this.checkPlayerExisted(this.state.player.username) === false)
+      this.props.addPlayerOn(this.state.player);
+    else
+      console.log('Player Existed');
+  };
+
+  isDisabled = () => {
+    const {firstName, lastName, username } = this.state.player;
+    return firstName === '' || lastName === '' || username === '';
   };
 
   render() {
@@ -32,7 +49,7 @@ class AddPlayer extends Component {
       <input type="text" name="lastName" placeholder="Last Name" value={this.state.player.lastName} onChange={this.handleChange}/>
       <input type="text" name="username" placeholder="Username" value={this.state.player.username} onChange={this.handleChange}/>
       <input type="number" name="gamesPlayed" placeholder="Number of Games" value={this.state.player.gamesPlayed} onChange={this.handleChange}/>
-      <button>Add</button>
+      <button disabled={this.isDisabled()}>Add</button>
 	  </form>
     </div>);
   };
@@ -40,6 +57,7 @@ class AddPlayer extends Component {
 
 AddPlayer.propTypes = {
   addPlayerOn: PropTypes.func.isRequired,
+  playerArray: PropTypes.array.isRequired,
 };
 
 export default AddPlayer;

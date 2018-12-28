@@ -22,7 +22,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
-      	<AddPlayer addPlayerOn={this.handleAddingPlayer} />
+      	<AddPlayer playerArray={this.state.playerArray} addPlayerOn={this.handleAddingPlayer} />
     	<PlayerList playerArray={this.state.playerArray} />
       </div>
     );

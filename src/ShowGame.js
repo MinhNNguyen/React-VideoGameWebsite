@@ -33,7 +33,7 @@ class ShowGame extends Component {
 }
 
 ShowGame.propTypes = {
-  games: PropTypes.number.isRequired,
+  games: PropTypes.string.isRequired,
 };
 
 export default ShowGame;
